@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>A Week of Little Surprises 💖</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+
+  </style>
+</head>
+<body>
+  <audio id="bgMusic" loop autoplay>
+    <source src="song1.mp3" type="audio/mpeg"/>
+  </audio>
+
+  <header>
+    <h1>A Week of Little Surprises — For You 💖</h1>
+    <button onclick="toggleMusic()">🎵 Play / Pause</button>
+  </header>
+
+  <main class="grid">
+    <div class="card" data-day="7" data-page="rose.html">Rose Day<span class="status"></span></div>
+    <div class="card" data-day="8" data-page="chocolate.html">Chocolate Day<span class="status"></span></div>
+    <div class="card" data-day="9" data-page="teddy.html">Teddy Day<span class="status"></span></div>
+    <div class="card" data-day="10" data-page="promise.html">Promise Day<span class="status"></span></div>
+    <div class="card" data-day="11" data-page="hug.html">Hug Day<span class="status"></span></div>
+    <div class="card" data-day="12" data-page="kiss.html">Kiss Day<span class="status"></span></div>
+    <div class="card" data-day="13" data-page="propose.html">Propose Day<span class="status"></span></div>
+  </main>
+
+<script>
+const today = new Date();
+const day = today.getDate();
+
+document.querySelectorAll('.card').forEach(card => {
+  const unlockDay = parseInt(card.dataset.day);
+  const status = card.querySelector('.status');
+
+  if (day < unlockDay) {
+    const diff = unlockDay - day;
+    status.innerText = `\nUnlocks in ${diff} day(s)`;
+    card.classList.add('locked');
+  } else if (day === unlockDay) {
+    status.innerText = '\nUnlocked today 💖';
+    card.onclick = () => location.href = card.dataset.page;
+  } else {
+    status.innerText = '\nAlready opened 💕';
+    card.onclick = () => location.href = card.dataset.page;
+  }
+});
+
+function toggleMusic() {
+  const music = document.getElementById('bgMusic');
+  music.paused ? music.play() : music.pause();
+}
+</script>
+</body>
+</html>

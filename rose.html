@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rose Day 🌹</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .rose-container { text-align:center; padding:40px 20px; }
+    .rose-css { width:160px; height:160px; margin:20px auto; position:relative; }
+    .petal { position:absolute; width:80px; height:80px; background:radial-gradient(circle,#ff5c8a,#e6004c); border-radius:50% 50% 50% 0; transform-origin:bottom right; }
+    .petal:nth-child(1){transform:rotate(0deg);} .petal:nth-child(2){transform:rotate(45deg);} .petal:nth-child(3){transform:rotate(90deg);} .petal:nth-child(4){transform:rotate(135deg);} .petal:nth-child(5){transform:rotate(180deg);} .petal:nth-child(6){transform:rotate(225deg);} .petal:nth-child(7){transform:rotate(270deg);} .petal:nth-child(8){transform:rotate(315deg);}
+
+    .quiz { margin-top:30px; }
+    .options { display:flex; justify-content:center; gap:20px; flex-wrap:wrap; }
+    .option { background:white; border-radius:20px; padding:15px; width:150px; cursor:pointer; box-shadow:0 10px 20px rgba(0,0,0,0.1); transition:0.3s; }
+    .option:hover { transform:scale(1.05); }
+    .option img { width:100%; border-radius:15px; }
+
+    .hidden { display:none; }
+
+    .message { max-width:600px; margin:40px auto; background:white; padding:30px; border-radius:20px; box-shadow:0 10px 30px rgba(0,0,0,0.15); font-size:1.1rem; line-height:1.6; }
+
+#typewriter-text::after {
+  content: "|";
+  display: inline-block;
+  margin-left: 2px;
+  color: hotpink;
+  animation: blink 0.8s infinite;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+.message p.typewriter {
+  white-space: normal;
+  overflow: visible;
+  border-right: none;
+  width: auto;
+  animation: typing 8s steps(100, end) forwards;
+}
+
+  </style>
+</head>
+<body>
+
+<div class="rose-container">
+  <h1 style="padding-bottom: 40px;">🌹 Rose Day 🌹</h1>
+
+  <div class="rose">
+  <div class="petal"></div>
+  <div class="petal"></div>
+  <div class="petal"></div>
+  <div class="petal"></div>
+  <div class="petal"></div>
+  <div class="petal"></div>
+  <div class="petal"></div>
+  <div class="petal"></div>
+  <div class="petal"></div>
+  <div class="petal"></div>
+  <div class="petal"></div>
+  <div class="petal"></div>
+  <div class="petal"></div>
+  <div class="petal"></div>
+  <div class="petal"></div>
+  <div class="petal"></div>
+  <div class="petal"></div>
+  <div class="petal"></div>
+  <div class="petal"></div>
+  <div class="petal"></div>
+  <div class="petal"></div>
+  <div class="petal"></div>
+  <div class="petal"></div>
+  <div class="petal"></div>
+  <div class="petal"></div>
+  <div class="petal"></div>
+  <div class="petal"></div>
+  <div class="petal"></div>
+  <div class="petal"></div>
+  <div class="petal"></div>
+  <div class="text">
+      <span>Happy Rose Day ✨</span>
+  </div>
+</div>
+
+  <div id="quiz" class="quiz">
+    <h2>Quick Question 💭</h2>
+    <p>Which Disney character do I look like?</p>
+
+    <div class="options">
+      <div class="option" onclick="wrong()">
+        <img src="Jim.jpg" alt="Jim Hawkins" />
+        <p>Jim Hawkins</p>
+      </div>
+      <div class="option" onclick="correct()">
+        <img src="Naveen.jpg" alt="Prince Naveen" />
+        <p>Prince Naveen</p>
+      </div>
+    </div>
+  </div>
+
+  <div id="message" class="message hidden">
+  <p id="typewriter-text" style="color: #333; font-weight: 500;"></p>
+
+  <p id="signature" class="hidden" style="margin-top:20px; font-weight:bold;">
+    Forever Yours,<br>Sir ji
+  </p>
+</div>
+
+<script>
+const today = new Date();
+if (today.getMonth() !== 1 || today.getDate() !== 7) {
+  document.body.innerHTML = '<h2 style="text-align:center;padding:40px;">This surprise unlocks on Rose Day 🌹</h2>';
+}
+
+function correct(){
+  document.getElementById('quiz').classList.add('hidden');
+  document.getElementById('message').classList.remove('hidden');
+}
+function wrong(){ alert('Hmm… close, but try again 💖'); }
+
+const fullText = "My Love, On this Rose Day, every petal whispers my admiration for you. Your presence fills my world with warmth, light, and quiet joy. Like a rose in full bloom, your beauty doesn’t just captivate my eyes—it holds my heart. The red roses mirror the passion that burns for you, while the white ones reflect the pure, gentle love we share. In the garden of life, you are my most cherished blossom. Thank you for being my constant source of love, strength, and inspiration. Walking this journey with you is as sweet and intoxicating as the fragrance of roses. Happy Rose Day, my love 🌹💖";
+
+let index = 0;
+const speed = 50;
+
+function typeWriter() {
+  if (index < fullText.length) {
+    document.getElementById("typewriter-text").innerHTML += fullText.charAt(index);
+    index++;
+    setTimeout(typeWriter, speed);
+  } else {
+    document.getElementById("signature").classList.remove('hidden');
+  }
+}
+
+function correct() {
+  document.getElementById('quiz').classList.add('hidden');
+  document.getElementById('message').classList.remove('hidden');
+  typeWriter();
+}
+
+function wrong() {
+  alert('Hmm… close, but try again 💖');
+}
+</script>
+
+</body>
+</html>

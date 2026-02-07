@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kiss Day 💋</title>
+  <style>
+    body { font-family: 'Arial', sans-serif; background-color: #fff0f3; margin: 0; overflow-x: hidden; }
+    .container { text-align:center; padding:40px 20px; }
+
+    .love-card {
+      max-width: 500px; margin: 0 auto; background: white; padding: 30px;
+      border-radius: 20px; box-shadow: 0 10px 30px rgba(255, 77, 109, 0.2);
+    }
+
+    .input-box { padding:12px; width:200px; border-radius:15px; border:2px solid #ff4d6d; outline:none; text-align:center; font-size: 1.2rem; }
+    .open-btn {
+      margin-top:15px; padding:12px 30px; background: #ff4d6d; color:white;
+      border:none; border-radius:25px; cursor:pointer; font-size: 1rem; transition: 0.3s;
+    }
+    .open-btn:hover { background: #c9184a; transform: scale(1.05); }
+
+    .kiss-particle {
+      position: absolute; pointer-events: none; font-size: 2rem;
+      animation: kissFloat 2s ease-out forwards; z-index: 100;
+    }
+    @keyframes kissFloat {
+      0% { transform: translateY(0) scale(0.5) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(-200px) scale(1.5) rotate(20deg); opacity: 0; }
+    }
+
+    .hidden { display: none; }
+    .message-box { text-align: left; margin-top: 20px; font-size: 1.1rem; line-height: 1.6; }
+
+    #typewriter-text::after {
+      content: "|"; display: inline-block; margin-left: 2px;
+      color: #ff4d6d; animation: blink 0.8s infinite;
+    }
+    @keyframes blink { 50% { opacity: 0; } }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="love-card">
+    <h2>💋 Kiss Day 💋</h2>
+
+    <div id="quiz">
+      <p>Enter the secret kiss code:</p>
+      <input type="text" id="ans" class="input-box" placeholder="💋❤️💋">
+      <br>
+      <button class="open-btn" onclick="check()">Unlock My Heart</button>
+    </div>
+
+    <div id="msg" class="hidden">
+      <div class="message-box">
+        <p id="typewriter-text"></p>
+        <p id="signature" class="hidden" style="font-weight:bold; margin-top:15px;">
+          Always your Sir ji 💋
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+
+const d = new Date();
+if (d.getMonth() !== 1 || d.getDate() !== 13) {
+  document.body.innerHTML = '<h2 style="text-align:center;padding:40px;">Unlocks on Kiss Day 💋</h2>';
+}
+
+const fullText = "A kiss is a lovely trick designed by nature to stop speech when words become superfluous. Every kiss we share says everything my words can't it's soft, honest, and uniquely ours. Sending you a million virtual kisses today to keep you smiling until I can give you a real one. Happy Kiss Day, my love! 💋💖";
+let index = 0;
+
+function spawnKisses() {
+  for(let i=0; i<15; i++) {
+    setTimeout(() => {
+      const kiss = document.createElement('div');
+      kiss.innerHTML = '💋';
+      kiss.className = 'kiss-particle';
+      kiss.style.left = Math.random() * window.innerWidth + 'px';
+      kiss.style.top = Math.random() * window.innerHeight + 'px';
+      document.body.appendChild(kiss);
+      setTimeout(() => kiss.remove(), 2000);
+    }, i * 100);
+  }
+}
+
+function check() {
+  const v = document.getElementById('ans').value;
+  if (v.includes('💋') || v.toLowerCase().includes('kiss')) {
+    spawnKisses();
+    document.getElementById('quiz').classList.add('hidden');
+    document.getElementById('msg').classList.remove('hidden');
+    typeWriter();
+  } else {
+    alert("Almost 😘 (Hint: Use the kiss emoji!)");
+  }
+}
+
+function typeWriter() {
+  if (index < fullText.length) {
+    document.getElementById("typewriter-text").innerHTML += fullText.charAt(index);
+    index++;
+    setTimeout(typeWriter, 50);
+  } else {
+    document.getElementById("signature").classList.remove('hidden');
+  }
+}
+</script>
+
+</body>
+</html>

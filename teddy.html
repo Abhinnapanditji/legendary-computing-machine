@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Teddy Day 🧸</title>
+  <style>
+    body { font-family: 'Arial', sans-serif; background-color: #fff5f8; margin: 0; }
+    .container { text-align:center; padding:40px 20px; }
+
+    .teddy { position: relative; width: 180px; height: 160px; margin: 40px auto; }
+    .teddy-head {
+      position: absolute; width: 120px; height: 100px; background: #b68d68;
+      border-radius: 50% 50% 45% 45%; left: 30px; top: 30px; z-index: 2;
+      box-shadow: inset -5px -5px 10px rgba(0,0,0,0.2);
+    }
+    .ear { position: absolute; width: 40px; height: 40px; background: #b68d68; border-radius: 50%; top: 20px; }
+    .ear.left { left: 25px; } .ear.right { right: 25px; }
+    .ear::after { content: ''; position: absolute; width: 20px; height: 20px; background: #e9bc91; border-radius: 50%; top: 10px; left: 10px; }
+    .eye { position: absolute; width: 12px; height: 12px; background: #333; border-radius: 50%; top: 35px; }
+    .eye.left { left: 30px; } .eye.right { right: 30px; }
+    .snout { position: absolute; width: 40px; height: 30px; background: #e9bc91; border-radius: 50%; bottom: 15px; left: 40px; }
+    .nose { position: absolute; width: 12px; height: 8px; background: #4a3728; border-radius: 50%; top: 5px; left: 14px; }
+
+    .love-card { max-width: 500px; margin: 0 auto; background: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+    .open-btn {
+      padding: 12px 25px; background: #b68d68; color: white; border: none;
+      border-radius: 25px; cursor: pointer; font-size: 1rem; transition: 0.3s; margin: 10px;
+    }
+    .open-btn:hover { transform: scale(1.05); background: #9e7a5a; }
+
+    .hidden { display: none; }
+    .message-box { text-align: left; margin-top: 20px; font-size: 1.1rem; line-height: 1.6; }
+
+    #typewriter-text::after {
+      content: "|"; display: inline-block; margin-left: 2px;
+      color: #b68d68; animation: blink 0.8s infinite;
+    }
+    @keyframes blink { 50% { opacity: 0; } }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="love-card">
+    <h2>🧸 Teddy Day 🧸</h2>
+
+    <div class="teddy">
+      <div class="ear left"></div>
+      <div class="ear right"></div>
+      <div class="teddy-head">
+        <div class="eye left"></div>
+        <div class="eye right"></div>
+        <div class="snout"><div class="nose"></div></div>
+      </div>
+    </div>
+
+    <div id="quiz">
+      <p>Pick the one that feels most like me holding you:</p>
+      <button class="open-btn" onclick="wrong()">A quick hug</button>
+      <button class="open-btn" onclick="right()">A long, quiet hug</button>
+    </div>
+
+    <div id="msg" class="hidden">
+      <div class="message-box">
+        <p id="typewriter-text"></p>
+        <p id="signature" class="hidden" style="font-weight:bold; margin-top:15px;">
+          Forever yours to hug,<br>Sir ji
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// Teddy Day Lock (Feb 10th)
+const d = new Date();
+if (d.getMonth() !== 1 || d.getDate() !== 10) {
+  document.body.innerHTML = '<h2 style="text-align:center;padding:40px;">Unlocks on Teddy Day 🧸</h2>';
+}
+
+const fullText = "If I were a teddy, I’d be the one you never let go of. Not because you need me—but because it feels right. You are my favorite comfort, my softest place to land, and the person I want to hold through every quiet moment. Happy Teddy Day, my love! 🧸💖";
+
+let index = 0;
+function typeWriter() {
+  if (index < fullText.length) {
+    document.getElementById("typewriter-text").innerHTML += fullText.charAt(index);
+    index++;
+    setTimeout(typeWriter, 50);
+  } else {
+    document.getElementById("signature").classList.remove('hidden');
+  }
+}
+
+function right() {
+  document.getElementById('quiz').classList.add('hidden');
+  document.getElementById('msg').classList.remove('hidden');
+  typeWriter();
+}
+
+function wrong() {
+  alert("Not quite… think softer 💕");
+}
+</script>
+
+</body>
+</html>

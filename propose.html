@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Propose Day 💍</title>
+<link rel="stylesheet" href="style.css" />
+
+<style>
+/* Starry background */
+body {
+  background: radial-gradient(circle at bottom, #1b2735 0%, #090a0f 100%);
+  overflow: hidden;
+}
+
+/* Stars */
+.stars {
+  position: fixed;
+  inset: 0;
+  background: transparent;
+}
+.star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: white;
+  border-radius: 50%;
+  animation: twinkle 3s infinite ease-in-out;
+}
+@keyframes twinkle {
+  0%,100% { opacity: .2; }
+  50% { opacity: 1; }
+}
+
+/* Center container */
+.proposal {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 30px;
+}
+
+/* Ring */
+.ring {
+  font-size: 90px;
+  margin-bottom: 20px;
+  opacity: 0;
+  transform: scale(0);
+  animation: ringPop 2s ease forwards;
+  animation-delay: 2s;
+}
+@keyframes ringPop {
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* Message */
+.message {
+  max-width: 600px;
+  color: #ffe6f0;
+  font-size: 1.1rem;
+  line-height: 1.7;
+  opacity: 0;
+  animation: fadeIn 2s ease forwards;
+  animation-delay: 4s;
+}
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
+/* Typewriter */
+.type {
+  border-right: 2px solid #ff9ac6;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 0;
+  animation: typing 6s steps(60,end) forwards;
+  animation-delay: 4.5s;
+}
+@keyframes typing {
+  to { width: 100%; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- Date lock -->
+<script>
+const today = new Date();
+if (today.getMonth() !== 1 || today.getDate() !== 13) {
+  document.body.innerHTML =
+    '<h2 style="color:white;text-align:center;padding:40px;">This moment unlocks on Propose Day 💍</h2>';
+}
+</script>
+
+<!-- Stars -->
+<div class="stars" id="stars"></div>
+
+<div class="proposal">
+  <div>
+    <div class="ring">💍</div>
+
+    <div class="message">
+      <p class="type">
+        In this quiet moment, under a sky full of stars,
+        I just want you to know —
+        every tomorrow I imagine…
+        has you in it.
+      </p>
+
+      <p style="margin-top:25px; font-weight:600; color:#ffb6d9;">
+        This is me — choosing you.
+        Always.
+      </p>
+    </div>
+  </div>
+</div>
+
+<script>
+/* Generate stars */
+const starContainer = document.getElementById("stars");
+for (let i = 0; i < 120; i++) {
+  const s = document.createElement("div");
+  s.className = "star";
+  s.style.top = Math.random()*100 + "vh";
+  s.style.left = Math.random()*100 + "vw";
+  s.style.animationDelay = Math.random()*3 + "s";
+  starContainer.appendChild(s);
+}
+</script>
+
+</body>
+</html>

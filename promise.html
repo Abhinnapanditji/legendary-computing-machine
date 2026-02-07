@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Promise Day 🤝</title>
+  <style>
+    body { font-family: 'Arial', sans-serif; background-color: #f4faff; margin: 0; }
+    .container { text-align:center; padding:40px 20px; }
+
+    .promise-visual {
+      height: 120px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 5rem;
+      margin: 20px 0;
+      filter: drop-shadow(0 5px 10px rgba(0,0,0,0.1));
+    }
+    .heart-pulse {
+      display: inline-block;
+      animation: pulse 1.5s infinite;
+      color: #ff4d6d;
+    }
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+      100% { transform: scale(1); }
+    }
+
+    .love-card { max-width: 500px; margin: 0 auto; background: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+    .input-box { padding:12px; width:200px; border-radius:15px; border:1px solid #cce5ff; outline:none; text-align:center; font-size: 1rem; }
+    .open-btn { margin-top:15px; padding:12px 30px; background: #007bff; color:white; border:none; border-radius:25px; cursor:pointer; font-size: 1rem; }
+
+    .hidden { display: none; }
+    .message-box { text-align: left; margin-top: 20px; font-size: 1.1rem; line-height: 1.6; border-top: 1px solid #eee; padding-top: 20px; }
+
+    #typewriter-text::after {
+      content: "|";
+      display: inline-block;
+      margin-left: 2px;
+      color: #007bff;
+      animation: blink 0.8s infinite;
+    }
+    @keyframes blink { 50% { opacity: 0; } }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="love-card">
+    <h2>🤝 Promise Day 🤝</h2>
+
+    <div class="promise-visual">
+      🤙<span class="heart-pulse">💖</span>🤙
+    </div>
+
+    <div id="quiz">
+      <p>Complete this promise:</p>
+      <p><b>“No matter what happens, I will always ___ you.”</b></p>
+      <input type="text" id="ans" class="input-box" placeholder="one word...">
+      <br>
+      <button class="open-btn" onclick="check()">Make the Promise</button>
+    </div>
+
+    <div id="msg" class="hidden">
+      <div class="message-box">
+        <p id="typewriter-text"></p>
+        <p id="signature" class="hidden" style="font-weight:bold; margin-top:15px;">
+          Chosen you once, choosing you forever,<br>Sir ji
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+
+const d = new Date();
+if (d.getMonth() !== 1 || d.getDate() !== 11) {
+  document.body.innerHTML = '<h2 style="text-align:center;padding:40px;">Unlocks on Promise Day 🤝</h2>';
+}
+
+const fullText = "I don’t promise you a life of perfection, but I promise you a life of presence. I promise to be the hand you hold when things get heavy, and the heart that never stops choosing you. Every single day, I choose us. No matter what, I am here to stay. 🤝💖";
+
+let index = 0;
+function typeWriter() {
+  if (index < fullText.length) {
+    document.getElementById("typewriter-text").innerHTML += fullText.charAt(index);
+    index++;
+    setTimeout(typeWriter, 50);
+  } else {
+    document.getElementById("signature").classList.remove('hidden');
+  }
+}
+
+function check() {
+  const v = document.getElementById('ans').value.toLowerCase();
+  if (v.includes('choose') || v.includes('love') || v.includes('protect')) {
+    document.getElementById('quiz').classList.add('hidden');
+    document.getElementById('msg').classList.remove('hidden');
+    typeWriter();
+  } else {
+    alert("Think deeper 💗 (Hint: It starts with 'C' or 'L')");
+  }
+}
+</script>
+
+</body>
+</html>

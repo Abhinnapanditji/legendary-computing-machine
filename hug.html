@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hug Day 🤗</title>
+  <style>
+    body { font-family: 'Arial', sans-serif; background-color: #fdf2f2; margin: 0; overflow-x: hidden; }
+    .container { text-align:center; padding:40px 20px; }
+
+    .love-card {
+      max-width: 500px; margin: 0 auto; background: white; padding: 30px;
+      border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      position: relative;
+    }
+
+
+    .hug-btn {
+      font-size: 3rem; background: none; border: none; cursor: pointer;
+      transition: transform 0.2s; z-index: 10; position: relative;
+    }
+    .hug-btn:active { transform: scale(1.3); }
+    #count-display { font-size: 1.2rem; color: #ff4d6d; margin-top: 10px; font-weight: bold; }
+
+    .heart-particle {
+      position: absolute; pointer-events: none; color: #ff4d6d;
+      animation: floatUp 1.5s ease-out forwards;
+    }
+    @keyframes floatUp {
+      0% { transform: translateY(0) scale(1); opacity: 1; }
+      100% { transform: translateY(-100px) scale(1.5); opacity: 0; }
+    }
+
+    .hidden { display: none; }
+    .message-box { text-align: left; margin-top: 20px; font-size: 1.1rem; line-height: 1.6; }
+
+    #typewriter-text::after {
+      content: "|"; display: inline-block; margin-left: 2px;
+      color: #ff4d6d; animation: blink 0.8s infinite;
+    }
+    @keyframes blink { 50% { opacity: 0; } }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="love-card">
+    <h2>🤗 Hug Day 🤗</h2>
+
+    <div id="quiz">
+      <p>Tap the hug until it feels enough 💞</p>
+      <button class="hug-btn" onclick="hug(event)">🤗</button>
+      <div id="count-display">Hugs: <span id="count">0</span></div>
+    </div>
+
+    <div id="msg" class="hidden">
+      <div class="message-box">
+        <p id="typewriter-text"></p>
+        <p id="signature" class="hidden" style="font-weight:bold; margin-top:15px;">
+          Sir ji
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+
+const d = new Date();
+if (d.getMonth() !== 1 || d.getDate() !== 12) {
+  // document.body.innerHTML = '<h2 style="text-align:center;padding:40px;">Unlocks on Hug Day 🤗</h2>';
+}
+
+let c = 0;
+const fullText = "This hug isn’t just arms it’s safety, warmth, and home. I wish I could give you a real one right now, but until then, let these virtual hugs remind you that you are my favorite place to be. Happy Hug Day, my love! 🤗💖";
+let index = 0;
+
+function hug(event) {
+  c++;
+  document.getElementById('count').innerText = c;
+
+  const heart = document.createElement('div');
+  heart.innerHTML = '❤️';
+  heart.className = 'heart-particle';
+  heart.style.left = (event.clientX - 20) + 'px';
+  heart.style.top = (event.clientY - 20) + 'px';
+  document.body.appendChild(heart);
+  setTimeout(() => heart.remove(), 1500);
+
+  if (c >= 12) {
+    document.getElementById('quiz').classList.add('hidden');
+    document.getElementById('msg').classList.remove('hidden');
+    typeWriter();
+  }
+}
+
+function typeWriter() {
+  if (index < fullText.length) {
+    document.getElementById("typewriter-text").innerHTML += fullText.charAt(index);
+    index++;
+    setTimeout(typeWriter, 50);
+  } else {
+    document.getElementById("signature").classList.remove('hidden');
+  }
+}
+</script>
+
+</body>
+</html>

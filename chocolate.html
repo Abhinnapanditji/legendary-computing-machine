@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chocolate Day 🍫</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body { font-family: 'Arial', sans-serif; background-color: #fdf2f2; }
+    .container { text-align:center; padding:40px 20px; }
+
+    .chocolate-bar {
+      display: grid;
+      grid-template-columns: repeat(2, 60px);
+      grid-gap: 6px;
+      background-color: #3e2723;
+      padding: 12px;
+      border-radius: 10px;
+      width: fit-content;
+      margin: 30px auto;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    }
+    .square {
+      width: 60px; height: 60px;
+      background-color: #5d4037;
+      border-radius: 4px;
+      box-shadow: inset 4px 4px 6px rgba(255,255,255,0.1), inset -4px -4px 6px rgba(0,0,0,0.4);
+      transition: 0.3s;
+    }
+    .square:hover { transform: scale(1.05); background-color: #6d4c41; }
+
+    .quiz { margin-top:30px; }
+    .input-box { padding:12px; width:250px; border-radius:15px; border:1px solid #ddd; outline:none; text-align:center; }
+    .open-btn { margin-top:15px; padding:10px 25px; background: #5d4037; color:white; border:none; border-radius:20px; cursor:pointer; }
+
+    .hidden { display:none; }
+    .message { max-width:600px; margin:40px auto; background:white; padding:30px; border-radius:20px; box-shadow:0 10px 30px rgba(0,0,0,0.15); font-size:1.1rem; line-height:1.6; text-align: left;}
+    #typewriter-text::after {
+      content: "|";
+      display: inline-block;
+      margin-left: 2px;
+      color: #5d4037;
+      animation: blink 0.8s infinite;
+    }
+    @keyframes blink { 50% { opacity: 0; } }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h1>🍫 Happy Chocolate Day 🍫</h1>
+
+  <div class="chocolate-bar">
+    <div class="square"></div><div class="square"></div>
+    <div class="square"></div><div class="square"></div>
+    <div class="square"></div><div class="square"></div>
+    <div class="square"></div><div class="square"></div>
+  </div>
+
+  <div id="quiz" class="quiz">
+    <h2>One question for you 💭</h2>
+    <p><b>If love had a flavor, what would ours be?</b></p>
+    <input type="text" id="ans" class="input-box" placeholder="Type your answer...">
+    <br>
+    <button class="open-btn" onclick="check()">Submit</button>
+  </div>
+
+  <div id="message" class="message hidden">
+    <p id="typewriter-text"></p>
+
+    <p id="signature" class="hidden" style="margin-top:20px; font-weight:bold;">
+      Always yours,<br>Sir ji
+    </p>
+  </div>
+</div>
+
+<script>
+const fullText = "My Love, walking through life with you is like enjoying the finest chocolate—sweet, warm, and comforting. Just like chocolate melts slowly and fills the heart with joy, your love melts away all my worries. You are the sweetness in my everyday life, the treat I look forward to, and the comfort I always need. Happy Chocolate Day to the person who makes my life extra sweet! 🍫💖";
+
+let index = 0;
+const speed = 50;
+
+function typeWriter() {
+  if (index < fullText.length) {
+    document.getElementById("typewriter-text").innerHTML += fullText.charAt(index);
+    index++;
+    setTimeout(typeWriter, speed);
+  } else {
+    document.getElementById("signature").classList.remove('hidden');
+  }
+}
+
+function check() {
+  const v = document.getElementById('ans').value.toLowerCase();
+  if (v.includes('sweet') || v.includes('chocolate')) {
+    document.getElementById('quiz').classList.add('hidden');
+    document.getElementById('message').classList.remove('hidden');
+    typeWriter();
+  } else {
+    alert("Think sweeter 💕");
+  }
+}
+
+const d = new Date();
+if (d.getMonth() !== 1 || d.getDate() !== 8) {
+  document.body.innerHTML = '<h2 style="text-align:center;padding:40px;">Unlocks on Chocolate Day 🍫</h2>';
+}
+</script>
+
+</body>
+</html>
